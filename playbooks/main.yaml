@@ -1,17 +1,16 @@
 ---
-- block:
-    - name: gather facts
-      vars:
-        vm_instance-name: "{{ variables.server }}"
-        resource_group: "{{ hostvars[vm_instance_name]['resource_group'] }}"
-        location: "{{ hostvars[variables.server]['location'] }}"
-      ansible.builtin.debug:
-        msg:
-        - "vm_instance_name: {{ vm-instance_name }}"
-        - "resource_group: {{ resource_group }}"
+- name: gather facts
+  vars:
+    vm_instance-name: "{{ variables.server }}"
+    resource_group: "{{ hostvars[vm_instance_name]['resource_group'] }}"
+    location: "{{ hostvars[variables.server]['location'] }}"
+  ansible.builtin.debug:
+    msg:
+    - "vm_instance_name: {{ vm-instance_name }}"
+    - "resource_group: {{ resource_group }}"
 
-    - name: set facts
-      ansible.builtin.set_fact:
-        vm_instance_name: "{{ variables.server }}"
-        resource_group: "{{ hostvars[variables.server]['resource_group'] }}"
-        azure_region: "{{ hostvars[variables.server]['location'] }}"
+- name: set facts
+  ansible.builtin.set_fact:
+    vm_instance_name: "{{ variables.server }}"
+    resource_group: "{{ hostvars[variables.server]['resource_group'] }}"
+    azure_region: "{{ hostvars[variables.server]['location'] }}"
