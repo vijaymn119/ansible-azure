@@ -1,0 +1,5 @@
+---
+- name: VM snapshot on AZURE
+  hosts: localhost
+  tasks:
+    - include_tasks: playbooks/main.yaml

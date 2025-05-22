@@ -1,5 +1,0 @@
----
-all:
-  hosts:
-    centos-host:
-      ansible_host: 20.5.160.92
