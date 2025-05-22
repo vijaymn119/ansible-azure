@@ -1,21 +1,31 @@
 ---
 - name: myplaybook
   hosts: localhost
+  gather_facts: yes
   become: yes
   
-  tasks:
-    - name: gather facts
-      vars:
-        vm_instance_name: "{{ variables.server }}"
-        resource_group: "{{ hostvars[vm_instance_name]['resource_group'] }}"
-        location: "{{ hostvars[variables.server]['location'] }}"
-      ansible.builtin.debug:
-        msg:
-        - "vm_instance_name: {{ vm_instance_name }}"
-        - "resource_group: {{ resource_group }}"
+ # tasks:
+ #   - name: gather facts ##
+ #     vars:
+ #       vm_instance_name: "{{ variables.server }}"
+ #       resource_group: "{{ hostvars[vm_instance_name]['resource_group'] }}"
+ #       location: "{{ hostvars[variables.server]['location'] }}"
+ #     ansible.builtin.debug:
+ #      msg:
+ #       - "vm_instance_name: {{ vm_instance_name }}"
+ #       - "resource_group: {{ resource_group }}"
 
-    - name: set facts
-      ansible.builtin.set_fact:
-        vm_instance_name: "{{ variables.server }}"
-        resource_group: "{{ hostvars[variables.server]['resource_group'] }}"
-        azure_region: "{{ hostvars[variables.server]['location'] }}"
+ #   - name: set facts
+ #     ansible.builtin.set_fact:
+ #       vm_instance_name: "{{ variables.server }}"
+ #       resource_group: "{{ hostvars[variables.server]['resource_group'] }}"
+ #       azure_region: "{{ hostvars[variables.server]['location'] }}"
+
+  tasks:
+    - name: Display the hostname
+      ansible.builtin.debug:
+        msg: "The hostname of this server is: {{ ansible_hostname }}"
+
+    - name: Display OS distribution and version
+      ansible.builtin.debug:
+        msg: "This server is running {{ ansible_distribution }} {{ ansible_distribution_version }}"
